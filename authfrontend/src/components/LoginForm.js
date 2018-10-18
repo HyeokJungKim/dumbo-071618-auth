@@ -21,10 +21,18 @@ class LoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     UserAdapter.login(this.state)
-    .then(console.log)
+    .then(data =>{
+      if(!data.error){
+        console.log(data);
+        this.props.setUser(data)
+        this.props.history.push("/my_snacks")
+        localStorage.setItem("token", data.user.user_id)
+      }
+    })
   }
 
   render() {
+    console.log(this.props);
     const {username, password} = this.state
     return (
       <div>

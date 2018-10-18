@@ -18,7 +18,22 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    if(localStorage.getItem("token")){
+      UserAdapter.persist(localStorage.getItem("token"))
+      .then(resp => {
+        if(!resp.error){
+          this.setUser(resp)}
+        else{
+          this.logout()
+        }
+        })
+
+    }
+  }
+
   logout = () => {
+    localStorage.clear()
     this.setState({
       currentUser: {},
       snacks: []
@@ -34,7 +49,7 @@ class App extends Component {
 
   render() {
     // How do we know if we're logged in?
-    const loggedIn = false
+    const loggedIn = !!this.state.currentUser.user_id
     return (
       <Router>
         <div className="App">
@@ -47,8 +62,8 @@ class App extends Component {
           <Link to="/my_snacks">My Snacks</Link>
 
           <Switch>
-            <Route path="/login" component={LoginForm}></Route>
-            <Route path="/my_snacks" component={Snacks}></Route>
+            <Route path="/login" render={(routeProps)=> <LoginForm setUser={this.setUser} {...routeProps}/>}></Route>
+            <Route path="/my_snacks" render={() => <Snacks snacks={this.state.snacks}/>}></Route>
             <Route path="/snacks" component={AllSnacks}></Route>
           </Switch>
         </div>

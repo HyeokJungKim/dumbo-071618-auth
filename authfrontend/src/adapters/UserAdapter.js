@@ -2,7 +2,7 @@ const BASE_API = "http://localhost:3000/"
 
 class UserAdapter{
   static login(data){
-    return fetch(`${BASE_API}/${"????????"}`,{
+    return fetch(`${BASE_API}/login`,{
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -17,7 +17,7 @@ class UserAdapter{
     return fetch(`${BASE_API}/persist`,{
       method: "GET",
       headers: {
-        "????" : "????"
+        "Authorization" : token
       }
     })
     .then(res => res.json())
