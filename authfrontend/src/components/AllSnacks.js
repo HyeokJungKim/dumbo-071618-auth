@@ -14,7 +14,7 @@ class AllSnacks extends Component {
     return (
       <div>
         <h2>Snacks Available</h2>
-        {this.state.snacks.map(snack => <li>{snack.name}</li>)}
+        {this.state.snacks.map(snack => <li key={snack.id}>{snack.name}</li>)}
       </div>
     );
   }
