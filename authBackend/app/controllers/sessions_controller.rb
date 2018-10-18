@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if(@user && @user.authenticate(user_params[:password]))
       token = JWT.encode({user_id: @user.id}, "071618")
       render json: {
-        user: {user_id: token, username: @user.username},
+        user: {user_id:@user.id ,token: token, username: @user.username},
         snacks: @user.snacks
       }
     else

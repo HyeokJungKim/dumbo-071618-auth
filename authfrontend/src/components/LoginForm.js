@@ -26,7 +26,7 @@ class LoginForm extends Component {
         console.log(data);
         this.props.setUser(data)
         this.props.history.push("/my_snacks")
-        localStorage.setItem("token", data.user.user_id)
+        localStorage.setItem("token", data.user.token)
       }
     })
   }
