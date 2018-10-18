@@ -23,7 +23,6 @@ class LoginForm extends Component {
     UserAdapter.login(this.state)
     .then(data =>{
       if(!data.error){
-        console.log(data);
         this.props.setUser(data)
         this.props.history.push("/my_snacks")
         localStorage.setItem("token", data.user.token)
@@ -32,7 +31,6 @@ class LoginForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {username, password} = this.state
     return (
       <div>
