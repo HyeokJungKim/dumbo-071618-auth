@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WithAuth from '../hoc/withAuth';
 
 class AllSnacks extends Component {
   state ={
@@ -12,13 +13,13 @@ class AllSnacks extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Snacks Available</h2>
-        {this.state.snacks.map(snack => <li key={snack.id}>{snack.name}</li>)}
-      </div>
+        <div>
+          <h2>Snacks Available</h2>
+          {this.state.snacks.map(snack => <li key={snack.id}>{snack.name}</li>)}
+        </div>
     );
   }
 
 }
 
-export default AllSnacks;
+export default WithAuth(AllSnacks);

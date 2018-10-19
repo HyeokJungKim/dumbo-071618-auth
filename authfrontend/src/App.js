@@ -64,7 +64,7 @@ class App extends Component {
           <Switch>
             <Route path="/login" render={(routeProps)=> <LoginForm setUser={this.setUser} {...routeProps}/>}></Route>
             <Route path="/my_snacks" render={() => <Snacks snacks={this.state.snacks}/>}></Route>
-            <Route path="/snacks" component={AllSnacks}></Route>
+            <Route path="/snacks" render={() => <AllSnacks loggedIn={loggedIn} />}></Route>
           </Switch>
         </div>
       </Router>
